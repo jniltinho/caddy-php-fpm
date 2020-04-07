@@ -13,11 +13,11 @@ ENV fpm_conf /etc/php/7.4/fpm/pool.d/www.conf
 RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && set -x \
     && apt-get update \
-    && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates \
+    && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr apt-transport-https lsb-release ca-certificates \
     software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
-    && apt-get install -qy nginx goaccess \
+    && apt-get install -qy goaccess \
     && apt-get install --no-install-recommends --no-install-suggests -q -y \
             apt-utils zip unzip git  libmemcached-dev \
             libmemcached11 libmagickwand-dev \
@@ -43,6 +43,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" ${fpm_conf} \
     && sed -i -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" ${fpm_conf} \
     && sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" ${fpm_conf} \
+    && sed -i 's|www-data|nginx|g' ${fpm_conf} \
     && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
     && echo "extension=redis.so" > /etc/php/7.4/mods-available/redis.ini \
     && echo "extension=memcached.so" > /etc/php/7.4/mods-available/memcached.ini \
@@ -54,6 +55,10 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && ln -sf /etc/php/7.4/mods-available/imagick.ini /etc/php/7.4/fpm/conf.d/20-imagick.ini \
     && ln -sf /etc/php/7.4/mods-available/imagick.ini /etc/php/7.4/cli/conf.d/20-imagick.ini
 
+RUN echo 'deb [arch=amd64] http://nginx.org/packages/mainline/ubuntu/ bionic nginx' > /etc/apt/sources.list.d/nginx.list \
+    && curl -L http://nginx.org/keys/nginx_signing.key|apt-key add - \
+    && apt-get update && apt-get install -qy nginx \
+    && rm -rf /etc/nginx/conf.d/default.conf
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -69,7 +74,7 @@ RUN apt-get purge -y --auto-remove $buildDeps \
 ADD ./supervisor.conf /etc/supervisor.conf
 
 # Override nginx's default config
-COPY ./default.conf /etc/nginx/sites-available/default
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 # Override default nginx welcome page
 COPY html /usr/share/nginx/html

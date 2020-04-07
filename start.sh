@@ -2,11 +2,11 @@
 
 # Update nginx to match worker_processes to no. of cpu's
 procs=$(cat /proc/cpuinfo |grep processor | wc -l)
-sed -i -e "s/worker_processes  auto/worker_processes $procs/" /etc/nginx/nginx.conf
+sed -i -e "s/worker_processes  1/worker_processes $procs/" /etc/nginx/nginx.conf
 
 # Always chown webroot for better mounting
 mkdir -p /usr/share/nginx_stats
-chown -Rf www-data:www-data /usr/share/nginx_stats /usr/share/nginx
+chown -Rf nginx:nginx /usr/share/nginx_stats /usr/share/nginx
 
 
 # Add Config Goaccess for Nginx Log
