@@ -3,6 +3,7 @@
 GOACCESS_SLEEP=600
 GOACCESS_LOG=/var/log/nginx/access.log
 GOACCESS_HTML=/usr/share/nginx_stats
+GOACCESS_FORMAT='--time-format=%H:%M:%S --date-format=%d/%b/%Y --log-format=COMBINED'
 
-/usr/bin/goaccess $GOACCESS_LOG -a -o ${GOACCESS_HTML}/index.html
+/usr/bin/goaccess $GOACCESS_LOG -a -o ${GOACCESS_HTML}/index.html ${GOACCESS_FORMAT}
 sleep $GOACCESS_SLEEP
