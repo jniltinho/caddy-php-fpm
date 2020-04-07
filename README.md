@@ -1,4 +1,6 @@
-# Nginx + PHP-FPM 7.4.x + Composer built on Ubuntu 18.04 (Bionic) image
+# Ubuntu + Nginx + PHP-FPM 7.4
+
+Nginx + PHP-FPM 7.4 + Composer built on Ubuntu 18.04 (Bionic) image for Laravel and PHP Projects
 
 ## Introduction
 
@@ -8,9 +10,9 @@ This is a Dockerfile to build a ubuntu based container image running nginx and p
 
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Ubuntu Version |
 |-----|-------|-----|--------|--------|
-| latest | master Branch |1.17.9 | 7.4.3 | bionic |
-| php73 | php73 Branch |1.17.9 | 7.3.15 | bionic |
-| php72 | php72 Branch |1.17.9 | 7.2.28 | bionic |
+| latest | master Branch |1.14.0 | 7.4.3 | bionic |
+| php73 | php73 Branch |1.14.0 | 7.3.15 | bionic |
+| php72 | php72 Branch |1.14.0 | 7.2.28 | bionic |
 
 ## Building from source
 
