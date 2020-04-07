@@ -54,11 +54,12 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && ln -sf /etc/php/7.4/mods-available/imagick.ini /etc/php/7.4/fpm/conf.d/20-imagick.ini \
     && ln -sf /etc/php/7.4/mods-available/imagick.ini /etc/php/7.4/cli/conf.d/20-imagick.ini
 
-## https://hub.docker.com/_/composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-## https://github.com/ochinchina/supervisord
-COPY --from=ochinchina/supervisord:latest /usr/local/bin/supervisord /usr/local/bin/supervisord
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install golang supervisord - https://github.com/ochinchina/supervisord
+ADD https://github.com/ochinchina/supervisord/releases/download/v0.6.3/supervisord_0.6.3_linux_amd64 /usr/local/bin/supervisord
 
 # Clean up
 RUN apt-get purge -y --auto-remove $buildDeps \
@@ -77,7 +78,7 @@ ADD ./run_goaccess /usr/local/bin/run_goaccess
 
 # Add Scripts
 ADD ./start.sh /start.sh
-RUN chmod +x /start.sh
+RUN chmod +x /start.sh /usr/local/bin/supervisord
 
 WORKDIR /usr/share/nginx/
 

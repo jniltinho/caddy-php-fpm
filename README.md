@@ -26,14 +26,14 @@ cd nginx-php-fpm
 followed by
 
 ```bash
-docker build -t nginx-php-fpm:latest . # PHP 7.4.x
+docker build --no-cache -t nginx-php-fpm:latest . # PHP 7.4.x
 ```
 
 
 or
 
 ```bash
-docker build -t nginx-php-fpm:php74 . # PHP 7.4.x
+docker build --no-cache -t nginx-php-fpm:php74 . # PHP 7.4.x
 ```
 
 
