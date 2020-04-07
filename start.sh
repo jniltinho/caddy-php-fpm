@@ -5,8 +5,8 @@ procs=$(cat /proc/cpuinfo |grep processor | wc -l)
 sed -i -e "s/worker_processes  auto/worker_processes $procs/" /etc/nginx/nginx.conf
 
 # Always chown webroot for better mounting
-mkdir -p /usr/share/nginx/stats
-chown -Rf www-data:www-data /usr/share/nginx
+mkdir -p /usr/share/nginx_stats
+chown -Rf www-data:www-data /usr/share/nginx_stats /usr/share/nginx
 
 
 # Add Config Goaccess for Nginx Log

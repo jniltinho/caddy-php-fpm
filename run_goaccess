@@ -2,7 +2,7 @@
 
 GOACCESS_SLEEP=600
 GOACCESS_LOG=/var/log/nginx/access.log
-GOACCESS_HTML=/usr/share/nginx/stats
+GOACCESS_HTML=/usr/share/nginx_stats
 
 /usr/bin/goaccess $GOACCESS_LOG -a -o ${GOACCESS_HTML}/index.html
 sleep $GOACCESS_SLEEP

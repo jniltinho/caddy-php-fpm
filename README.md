@@ -49,6 +49,9 @@ To run the container:
 
 ```bash
 sudo docker run -d -p 8080:80 jniltinho/nginx-php-fpm:latest
+
+## Laravel
+docker run --rm -it -p 8080:80 -v $PWD:/usr/share/nginx jniltinho/nginx-php-fpm:latest
 ```
 
 Default web root:
