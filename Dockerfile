@@ -17,9 +17,10 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
+    && apt-get install -qy nginx goaccess \
     && apt-get install --no-install-recommends --no-install-suggests -q -y \
             apt-utils zip unzip git  libmemcached-dev \
-            libmemcached11 libmagickwand-dev nginx goaccess tzdata geoip-database \
+            libmemcached11 libmagickwand-dev \
             php7.4-fpm php7.4-cli php7.4-bcmath \
             php7.4-dev php7.4-common php7.4-json \
             php7.4-opcache php7.4-readline php7.4-mbstring \
@@ -76,6 +77,7 @@ ADD ./run_goaccess /usr/local/bin/run_goaccess
 
 # Add Scripts
 ADD ./start.sh /start.sh
+RUN chmod +x /start.sh
 
 WORKDIR /usr/share/nginx/
 
