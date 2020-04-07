@@ -81,7 +81,7 @@ ADD ./run_goaccess /usr/local/bin/run_goaccess
 # Add Scripts
 ADD ./start.sh /start.sh
 
-WORKDIR /usr/share/nginx
+WORKDIR /usr/share/nginx/
 
 EXPOSE 80
 
