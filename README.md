@@ -10,9 +10,9 @@ This is a Dockerfile to build a ubuntu based container image running nginx and p
 
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Ubuntu Version |
 |-----|-------|-----|--------|--------|
-| latest | master Branch |1.14.0 | 7.4.3 | bionic |
-| php73 | php73 Branch |1.14.0 | 7.3.15 | bionic |
-| php72 | php72 Branch |1.14.0 | 7.2.28 | bionic |
+| latest | master Branch |1.19.0 | 7.4.3 | bionic |
+| php73 | php73 Branch |1.19.0 | 7.3.15 | bionic |
+| php72 | php72 Branch |1.19.0 | 7.2.28 | bionic |
 
 ## Building from source
 
@@ -29,13 +29,11 @@ followed by
 docker build --no-cache -t nginx-php-fpm:latest . # PHP 7.4.x
 ```
 
-
 or
 
 ```bash
 docker build --no-cache -t nginx-php-fpm:php74 . # PHP 7.4.x
 ```
-
 
 ## Pulling from Docker Hub
 
