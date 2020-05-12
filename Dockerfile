@@ -14,7 +14,7 @@ RUN buildDeps='gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && set -x \
     && apt-get update \
     && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr apt-transport-https lsb-release ca-certificates \
-    software-properties-common curl \
+    software-properties-common curl wget \
     && add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -q -y \
@@ -56,31 +56,35 @@ RUN buildDeps='gcc make autoconf libc-dev zlib1g-dev pkg-config' \
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+RUN wget https://github.com/caddyserver/caddy/releases/download/v2.0.0/caddy_2.0.0_linux_amd64.tar.gz \
+    && tar -xvf caddy_2.0.0_linux_amd64.tar.gz \
+    && rm -f LICENSE README.md caddy_2.0.0_linux_amd64.tar.gz \
+    && mv caddy /usr/bin/ && mkdir -p  /etc/caddy/conf.d \
+    && echo 'import /etc/caddy/conf.d/*.conf' >/etc/caddy/Caddyfile \
+    && mkdir -p /var/www/html \
+    && echo 'Hello, World!, Caddy v2 WebServer' >> /var/www/html/index.html
+
 # Install golang supervisord - https://github.com/ochinchina/supervisord
 ADD https://github.com/ochinchina/supervisord/releases/download/v0.6.3/supervisord_0.6.3_linux_amd64 /usr/local/bin/supervisord
 
 # Clean up
 RUN apt-get purge -y --auto-remove $buildDeps
 
-RUN apt-get update && apt-get install -qy goaccess nginx \
+RUN apt-get update && apt-get install -qy goaccess \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb
 
 # Supervisor config
 ADD ./supervisor.conf /etc/supervisor.conf
 
 # Override nginx's default config
-COPY ./default.conf /etc/nginx/sites-available/default
-
-# Override default nginx welcome page
-COPY html /usr/share/nginx/html
-
-ADD ./run_goaccess /usr/local/bin/run_goaccess
+COPY ./default.conf /etc/caddy/conf.d/default.conf
+#ADD ./run_goaccess /usr/local/bin/run_goaccess
 
 # Add Scripts
 ADD ./start.sh /start.sh
 RUN chmod +x /start.sh /usr/local/bin/supervisord
 
-WORKDIR /usr/share/nginx/
+WORKDIR /var/www/html
 
 EXPOSE 80
 
