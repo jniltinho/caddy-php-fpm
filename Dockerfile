@@ -75,6 +75,7 @@ RUN apt-get update && apt-get install -qy goaccess \
 
 # Supervisor config
 ADD ./supervisor.conf /etc/supervisor.conf
+COPY ./start-php-fpm.sh /usr/local/bin/start-php-fpm.sh
 
 # Override nginx's default config
 COPY ./default.conf /etc/caddy/conf.d/default.conf
