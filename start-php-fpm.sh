@@ -1,6 +1,5 @@
 #!/bin/bash
 
-PHP_VERSION=7.2
 chown -Rf www-data:www-data /var/www
 
 rm -f /var/run/php/php${PHP_VERSION}-fpm.sock
