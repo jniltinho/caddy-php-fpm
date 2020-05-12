@@ -61,8 +61,8 @@ RUN wget https://github.com/caddyserver/caddy/releases/download/v2.0.0/caddy_2.0
     && rm -f LICENSE README.md caddy_2.0.0_linux_amd64.tar.gz \
     && mv caddy /usr/bin/ && mkdir -p  /etc/caddy/conf.d \
     && echo 'import /etc/caddy/conf.d/*.conf' >/etc/caddy/Caddyfile \
-    && mkdir -p /var/www/html \
-    && echo 'Hello, World!, Caddy v2 WebServer' >> /var/www/html/index.html
+    && mkdir -p /var/www/app/public \
+    && echo 'Hello, World!, Caddy v2 WebServer' >> /var/www/app/public/index.html
 
 # Install golang supervisord - https://github.com/ochinchina/supervisord
 ADD https://github.com/ochinchina/supervisord/releases/download/v0.6.3/supervisord_0.6.3_linux_amd64 /usr/local/bin/supervisord
@@ -84,7 +84,7 @@ COPY ./default.conf /etc/caddy/conf.d/default.conf
 # Add Scripts
 RUN chmod +x /usr/local/bin/supervisord
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 EXPOSE 80
 
 CMD ["/usr/local/bin/supervisord", "-c",  "/etc/supervisor.conf"]
