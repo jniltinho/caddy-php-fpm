@@ -1,6 +1,7 @@
 #!/bin/bash
 
+PHP_VERSION=7.2
 chown -Rf www-data:www-data /var/www
 
-rm -f /var/run/php/php7.4-fpm.sock
-/usr/sbin/php-fpm7.4 --nodaemonize --fpm-config=/etc/php/7.4/fpm/pool.d/www.conf
+rm -f /var/run/php/php${PHP_VERSION}-fpm.sock
+/usr/sbin/php-fpm${PHP_VERSION} --nodaemonize --fpm-config=/etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
