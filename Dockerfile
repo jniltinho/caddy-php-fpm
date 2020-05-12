@@ -85,7 +85,6 @@ ADD ./start.sh /start.sh
 RUN chmod +x /start.sh /usr/local/bin/supervisord
 
 WORKDIR /var/www/html
-
 EXPOSE 80
 
-CMD ["/start.sh"]
+CMD ["/usr/local/bin/supervisord", "-c",  "/etc/supervisor.conf"]
