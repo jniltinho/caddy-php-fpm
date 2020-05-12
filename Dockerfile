@@ -81,8 +81,7 @@ COPY ./default.conf /etc/caddy/conf.d/default.conf
 #ADD ./run_goaccess /usr/local/bin/run_goaccess
 
 # Add Scripts
-ADD ./start.sh /start.sh
-RUN chmod +x /start.sh /usr/local/bin/supervisord
+RUN chmod +x /usr/local/bin/supervisord
 
 WORKDIR /var/www/html
 EXPOSE 80
