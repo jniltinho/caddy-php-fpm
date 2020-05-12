@@ -4,7 +4,7 @@ Caddy + PHP-FPM 7.2 + Composer built on Ubuntu 18.04 (Bionic) image for Laravel 
 
 ## Introduction
 
-This is a Dockerfile to build a ubuntu based container image running nginx and php-fpm 7.2.x & Composer.
+This is a Dockerfile to build a ubuntu based container image running caddy and php-fpm 7.2.x & Composer.
 
 ### Versioning
 
@@ -18,26 +18,26 @@ This is a Dockerfile to build a ubuntu based container image running nginx and p
 To build from source you need to clone the git repo and run docker build:
 
 ```bash
-git clone https://github.com/jniltinho/nginx-php-fpm.git
-cd nginx-php-fpm
+git clone https://github.com/jniltinho/caddy-php-fpm.git
+cd caddy-php-fpm
 ```
 
 followed by
 
 ```bash
-docker build --no-cache -t nginx-php-fpm:latest . # PHP 7.2.x
+docker build --no-cache -t caddy-php-fpm:latest . # PHP 7.2.x
 ```
 
 or
 
 ```bash
-docker build --no-cache -t nginx-php-fpm:php72 . # PHP 7.2.x
+docker build --no-cache -t caddy-php-fpm:php72 . # PHP 7.2.x
 ```
 
 ## Pulling from Docker Hub
 
 ```bash
-docker pull jniltinho/nginx-php-fpm:latest
+docker pull jniltinho/caddy-php-fpm:latest
 ```
 
 ## Running
@@ -47,8 +47,8 @@ To run the container:
 ```bash
 docker run --rm -it -v $(pwd):/app composer create-project --prefer-dist laravel/laravel app
 cd app
-docker run -p 8080:80 -v $(pwd):/var/www/app jniltinho/nginx-php-fpm
-## docker run --rm -it -p 8080:80 -v $(pwd):/var/www/app jniltinho/nginx-php-fpm /bin/bash
+docker run -p 8080:80 -v $(pwd):/var/www/app jniltinho/caddy-php-fpm
+## docker run --rm -it -p 8080:80 -v $(pwd):/var/www/app jniltinho/caddy-php-fpm /bin/bash
 ```
 
 Default web root:
