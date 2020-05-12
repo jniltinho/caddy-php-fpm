@@ -31,7 +31,7 @@ docker build --no-cache -t nginx-php-fpm:latest . # PHP 7.2.x
 or
 
 ```bash
-docker build --no-cache -t nginx-php-fpm:php74 . # PHP 7.2.x
+docker build --no-cache -t nginx-php-fpm:php72 . # PHP 7.2.x
 ```
 
 ## Pulling from Docker Hub
