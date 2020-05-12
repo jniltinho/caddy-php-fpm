@@ -1,10 +1,10 @@
 # Ubuntu + Caddy + PHP-FPM 7.2
 
-Caddy + PHP-FPM 7.2 + Composer built on Ubuntu 18.04 (Bionic) image for Laravel and PHP Projects
+Caddy + PHP-FPM 7.2 + Composer built on Ubuntu for Laravel and PHP Projects
 
 ## Introduction
 
-This is a Dockerfile to build a ubuntu based container image running caddy and php-fpm 7.2.x & Composer.
+This is a Dockerfile to build a ubuntu based container image running Caddy v2 and php-fpm 7.2.x & Composer.
 
 ### Versioning
 
