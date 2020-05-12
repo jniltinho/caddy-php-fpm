@@ -46,14 +46,10 @@ docker pull jniltinho/nginx-php-fpm:latest
 To run the container:
 
 ```bash
-docker run --rm -it -v $(pwd):/app composer create-project --prefer-dist laravel/laravel lara-app
-cd lara-app
-ln -s public html
-docker run -p 8080:80 -v $(pwd):/var/www jniltinho/nginx-php-fpm
-
-## Laravel
-ln -s public html
-docker run --rm -it -p 8080:80 -v $(pwd):/var/www jniltinho/nginx-php-fpm /bin/bash
+docker run --rm -it -v $(pwd):/app composer create-project --prefer-dist laravel/laravel app
+app
+docker run -p 8080:80 -v $(pwd):/var/www/app jniltinho/nginx-php-fpm
+## docker run --rm -it -p 8080:80 -v $(pwd):/var/www/app jniltinho/nginx-php-fpm /bin/bash
 ```
 
 Default web root:
