@@ -55,5 +55,5 @@ docker run -p 8080:80 -v $(pwd):/var/www/app jniltinho/nginx-php-fpm
 Default web root:
 
 ```bash
-/var/www/html
+/var/www
 ```
