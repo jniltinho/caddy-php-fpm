@@ -15,14 +15,9 @@ RUN buildDeps='gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && set -x \
     && apt-get update \
     && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr apt-transport-https lsb-release ca-certificates \
-    software-properties-common curl wget \
-    && apt-get install --no-install-recommends --no-install-suggests -q -y \
-    && curl gcc make autoconf libc-dev zlib1g-dev pkg-config \
-    && apt-utils zip unzip git libmemcached-dev \
-    && libmemcached11 libmagickwand-dev php7.2-fpm php7.2-cli php7.2-bcmath \
-    && php7.2-dev php7.2-common php7.2-json php7.2-opcache \
-    && php7.2-readline php7.2-mbstring php7.2-curl php7.2-gd php7.2-mysql \
-    && php7.2-zip php7.2-intl php7.2-xml php-pear \
+    software-properties-common curl wget apt-utils zip unzip git libmemcached-dev \
+    libmemcached11 libmagickwand-dev php7.2-fpm php7.2-cli php7.2-bcmath php7.2-dev php7.2-common php7.2-json php7.2-opcache \
+    php7.2-readline php7.2-mbstring php7.2-curl php7.2-gd php7.2-mysql php7.2-zip php7.2-intl php7.2-xml php-pear \
     && mkdir -p /tmp/pear/cache /run/php \
     && pecl channel-update pecl.php.net \
     && pecl -d php_suffix=${PHP_VERSION} install -o -f redis memcached imagick \
