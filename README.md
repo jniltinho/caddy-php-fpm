@@ -1,18 +1,17 @@
-# Ubuntu + Caddy + PHP-FPM 7.4
+# Ubuntu + Caddy + PHP-FPM 7.2
 
-Caddy + PHP-FPM 7.4 + Composer built on Ubuntu 18.04 (Bionic) image for Laravel and PHP Projects
+Caddy + PHP-FPM 7.2 + Composer built on Ubuntu 18.04 (Bionic) image for Laravel and PHP Projects
 
 ## Introduction
 
-This is a Dockerfile to build a ubuntu based container image running nginx and php-fpm 7.4.x & Composer.
+This is a Dockerfile to build a ubuntu based container image running nginx and php-fpm 7.2.x & Composer.
 
 ### Versioning
 
 | Docker Tag | GitHub Release | Caddy Version | PHP Version | Ubuntu Version |
 |-----|-------|-----|--------|--------|
-| latest | master Branch |2 | 7.4.3 | bionic |
-| php73 | php73 Branch |2 | 7.3.15 | bionic |
-| php72 | php72 Branch |2 | 7.2.28 | bionic |
+| latest | master Branch |2 | 7.2 | bionic |
+| php74 | php74 Branch |2 | 7.4.3 | bionic |
 
 ## Building from source
 
@@ -26,13 +25,13 @@ cd nginx-php-fpm
 followed by
 
 ```bash
-docker build --no-cache -t nginx-php-fpm:latest . # PHP 7.4.x
+docker build --no-cache -t nginx-php-fpm:latest . # PHP 7.2.x
 ```
 
 or
 
 ```bash
-docker build --no-cache -t nginx-php-fpm:php74 . # PHP 7.4.x
+docker build --no-cache -t nginx-php-fpm:php74 . # PHP 7.2.x
 ```
 
 ## Pulling from Docker Hub
